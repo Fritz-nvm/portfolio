@@ -484,13 +484,13 @@ function App() {
             // Progress bars indicate proficiency levels
           </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-4 text-emerald-400 font-mono flex items-center gap-2">
-                <Code2 size={20} />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-4 md:p-6">
+              <h3 className="text-base md:text-lg font-bold mb-3 md:mb-4 text-emerald-400 font-mono flex items-center gap-2">
+                <Code2 size={18} className="md:w-5 md:h-5" />
                 LANGUAGES
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3 md:space-y-4">
                 {[
                   { name: 'JavaScript/TypeScript', level: 90, xp: '2500 XP' },
                   { name: 'Python', level: 90, xp: '2400 XP' },
@@ -498,11 +498,11 @@ function App() {
                   { name: 'Go', level: 40, xp: '800 XP' }
                 ].map(skill => (
                   <div key={skill.name}>
-                    <div className="flex justify-between mb-2 text-sm">
-                      <span className="text-stone-300 font-mono">{skill.name}</span>
-                      <span className="text-stone-500 font-mono text-xs">{skill.xp}</span>
+                    <div className="flex justify-between mb-1.5 md:mb-2 text-xs md:text-sm">
+                      <span className="text-stone-300 font-mono truncate">{skill.name}</span>
+                      <span className="text-stone-500 font-mono text-xs ml-2">{skill.xp}</span>
                     </div>
-                    <div className="h-2 bg-stone-800 rounded-full overflow-hidden">
+                    <div className="h-1.5 md:h-2 bg-stone-800 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 transition-all duration-1000"
                         style={{ width: `${skill.level}%` }}
@@ -516,72 +516,72 @@ function App() {
               </div>
             </div>
 
-            <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-4 text-emerald-400 font-mono flex items-center gap-2">
-                <Server size={20} />
+            <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-4 md:p-6">
+              <h3 className="text-base md:text-lg font-bold mb-3 md:mb-4 text-emerald-400 font-mono flex items-center gap-2">
+                <Server size={18} className="md:w-5 md:h-5" />
                 BACKEND
               </h3>
-              <ul className="space-y-2 text-stone-400 text-sm font-mono">
+              <ul className="space-y-2 text-stone-400 text-xs md:text-sm font-mono">
                 {['Node.js & Express', 'FastAPI & Django', 'PostgreSQL & MongoDB', 'Redis & ElasticSearch', 'GraphQL & REST APIs', 'Microservices'].map(skill => (
                   <li key={skill} className="hover:text-emerald-400 transition-colors flex items-center gap-2">
-                    <Star size={12} className="text-stone-700" />
+                    <Star size={10} className="text-stone-700 md:w-3 md:h-3" />
                     {skill}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-4 text-emerald-400 font-mono flex items-center gap-2">
-                <Brain size={20} />
+            <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-4 md:p-6">
+              <h3 className="text-base md:text-lg font-bold mb-3 md:mb-4 text-emerald-400 font-mono flex items-center gap-2">
+                <Brain size={18} className="md:w-5 md:h-5" />
                 AI & ML
               </h3>
-              <ul className="space-y-2 text-stone-400 text-sm font-mono">
+              <ul className="space-y-2 text-stone-400 text-xs md:text-sm font-mono">
                 {['TensorFlow & PyTorch', 'NLP & Computer Vision', 'OpenAI & Hugging Face', 'ML Model Deployment', 'Data Processing', 'Vector Databases'].map(skill => (
                   <li key={skill} className="hover:text-emerald-400 transition-colors flex items-center gap-2">
-                    <Star size={12} className="text-stone-700" />
+                    <Star size={10} className="text-stone-700 md:w-3 md:h-3" />
                     {skill}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-4 text-emerald-400 font-mono">
+            <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-4 md:p-6">
+              <h3 className="text-base md:text-lg font-bold mb-3 md:mb-4 text-emerald-400 font-mono">
                 FRONTEND
               </h3>
-              <ul className="space-y-2 text-stone-400 text-sm font-mono">
+              <ul className="space-y-2 text-stone-400 text-xs md:text-sm font-mono">
                 {['React & Next.js', 'Vue.js & Nuxt', 'Tailwind CSS', 'State Management', 'Responsive Design', 'Accessibility'].map(skill => (
                   <li key={skill} className="hover:text-emerald-400 transition-colors flex items-center gap-2">
-                    <Star size={12} className="text-stone-700" />
+                    <Star size={10} className="text-stone-700 md:w-3 md:h-3" />
                     {skill}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-4 text-emerald-400 font-mono">
+            <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-4 md:p-6">
+              <h3 className="text-base md:text-lg font-bold mb-3 md:mb-4 text-emerald-400 font-mono">
                 DEVOPS
               </h3>
-              <ul className="space-y-2 text-stone-400 text-sm font-mono">
+              <ul className="space-y-2 text-stone-400 text-xs md:text-sm font-mono">
                 {['Docker & Kubernetes', 'AWS & GCP', 'CI/CD Pipelines', 'Infrastructure as Code', 'Monitoring', 'Linux Admin'].map(skill => (
                   <li key={skill} className="hover:text-emerald-400 transition-colors flex items-center gap-2">
-                    <Star size={12} className="text-stone-700" />
+                    <Star size={10} className="text-stone-700 md:w-3 md:h-3" />
                     {skill}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-4 text-emerald-400 font-mono">
+            <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-4 md:p-6">
+              <h3 className="text-base md:text-lg font-bold mb-3 md:mb-4 text-emerald-400 font-mono">
                 PRACTICES
               </h3>
-              <ul className="space-y-2 text-stone-400 text-sm font-mono">
+              <ul className="space-y-2 text-stone-400 text-xs md:text-sm font-mono">
                 {['Git & GitHub', 'Agile/Scrum', 'TDD', 'Code Review', 'System Design', 'Performance Opt'].map(skill => (
                   <li key={skill} className="hover:text-emerald-400 transition-colors flex items-center gap-2">
-                    <Star size={12} className="text-stone-700" />
+                    <Star size={10} className="text-stone-700 md:w-3 md:h-3" />
                     {skill}
                   </li>
                 ))}
