@@ -1,17 +1,41 @@
-import { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, Code2, Database, Brain, Server, ChevronDown, Menu, X, Terminal, Lock, Unlock, Trophy, Star, Zap, Download, Briefcase } from 'lucide-react';
+import { useState, useEffect } from "react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  Code2,
+  Database,
+  Brain,
+  Server,
+  ChevronDown,
+  Menu,
+  X,
+  Terminal,
+  Lock,
+  Unlock,
+  Trophy,
+  Star,
+  Zap,
+  Download,
+  Briefcase,
+} from "lucide-react";
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [terminalText, setTerminalText] = useState('');
+  const [terminalText, setTerminalText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
-  const [unlockedSections, setUnlockedSections] = useState<string[]>(['home', 'about']);
+  const [unlockedSections, setUnlockedSections] = useState<string[]>([
+    "home",
+    "about",
+  ]);
   const [achievements, setAchievements] = useState<string[]>([]);
-  const [visitedSections, setVisitedSections] = useState<string[]>(['home']);
+  const [visitedSections, setVisitedSections] = useState<string[]>(["home"]);
 
-  const fullText = "> You enter the portfolio of Your Name\n> What would you like to explore?";
+  const fullText =
+    "> You've entered the portfolio of Fritz Akam\n> What would you like to explore?";
 
   useEffect(() => {
     let index = 0;
@@ -25,7 +49,7 @@ function App() {
     }, 50);
 
     const cursorTimer = setInterval(() => {
-      setShowCursor(prev => !prev);
+      setShowCursor((prev) => !prev);
     }, 500);
 
     return () => {
@@ -38,18 +62,29 @@ function App() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      const sections = ['home', 'about', 'projects', 'skills', 'experience', 'hire', 'contact'];
+      const sections = [
+        "home",
+        "about",
+        "projects",
+        "skills",
+        "experience",
+        "hire",
+        "contact",
+      ];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
             setActiveSection(section);
 
             if (!visitedSections.includes(section)) {
-              setVisitedSections(prev => [...prev, section]);
+              setVisitedSections((prev) => [...prev, section]);
               unlockSection(section);
             }
             break;
@@ -58,32 +93,35 @@ function App() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [visitedSections]);
 
   const unlockSection = (section: string) => {
     if (!unlockedSections.includes(section)) {
-      setUnlockedSections(prev => [...prev, section]);
+      setUnlockedSections((prev) => [...prev, section]);
 
       const achievementMap: { [key: string]: string } = {
-        'projects': 'Explorer - Discovered the Projects Archive',
-        'skills': 'Scholar - Unlocked the Skills Matrix',
-        'experience': 'Historian - Accessed Experience Timeline',
-        'hire': 'Recruiter - Found the Hire Portal',
-        'contact': 'Networker - Reached the Contact Portal'
+        projects: "Explorer - Discovered the Projects Archive",
+        skills: "Scholar - Unlocked the Skills Matrix",
+        experience: "Historian - Accessed Experience Timeline",
+        hire: "Recruiter - Found the Hire Portal",
+        contact: "Networker - Reached the Contact Portal",
       };
 
-      if (achievementMap[section] && !achievements.includes(achievementMap[section])) {
-        setAchievements(prev => [...prev, achievementMap[section]]);
+      if (
+        achievementMap[section] &&
+        !achievements.includes(achievementMap[section])
+      ) {
+        setAchievements((prev) => [...prev, achievementMap[section]]);
         showAchievement(achievementMap[section]);
       }
     }
   };
 
   const showAchievement = (achievement: string) => {
-    const notification = document.createElement('div');
-    notification.className = 'achievement-notification';
+    const notification = document.createElement("div");
+    notification.className = "achievement-notification";
     notification.innerHTML = `
       <div class="flex items-center gap-3 bg-amber-900/90 backdrop-blur-sm text-amber-100 px-6 py-4 rounded-lg border border-amber-500/30 shadow-2xl">
         <svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
@@ -105,7 +143,7 @@ function App() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
       setMobileMenuOpen(false);
     }
   };
@@ -120,9 +158,12 @@ function App() {
   return (
     <div className="min-h-screen bg-stone-950 text-stone-100 relative overflow-x-hidden">
       <div className="fixed inset-0 opacity-5 pointer-events-none">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)`
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)`,
+          }}
+        />
       </div>
 
       <style>{`
@@ -157,14 +198,26 @@ function App() {
         }
       `}</style>
 
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-stone-950/95 backdrop-blur-sm border-b border-stone-800' : 'bg-transparent'
-      }`}>
+      <nav
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-stone-950/95 backdrop-blur-sm border-b border-stone-800"
+            : "bg-transparent"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <a href="#home" className="flex items-center gap-2 text-stone-100 font-mono text-sm group">
-              <Terminal size={20} className="text-emerald-400 group-hover:text-emerald-300 transition-colors" />
-              <span className="group-hover:text-emerald-400 transition-colors">&gt; portfolio.exe</span>
+            <a
+              href="#home"
+              className="flex items-center gap-2 text-stone-100 font-mono text-sm group"
+            >
+              <Terminal
+                size={20}
+                className="text-emerald-400 group-hover:text-emerald-300 transition-colors"
+              />
+              <span className="group-hover:text-emerald-400 transition-colors">
+                &gt; portfolio.exe
+              </span>
             </a>
 
             <button
@@ -175,21 +228,27 @@ function App() {
             </button>
 
             <div className="hidden md:flex gap-6 font-mono text-sm">
-              {['about', 'projects', 'skills', 'experience', 'hire', 'contact'].map((section) => (
+              {[
+                "about",
+                "projects",
+                "skills",
+                "experience",
+                "hire",
+                "contact",
+              ].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
                   className={`capitalize transition-all duration-200 flex items-center gap-2 ${
                     activeSection === section
-                      ? 'text-emerald-400'
+                      ? "text-emerald-400"
                       : unlockedSections.includes(section)
-                      ? 'text-stone-400 hover:text-stone-100'
-                      : 'text-stone-600 cursor-not-allowed'
+                      ? "text-stone-400 hover:text-stone-100"
+                      : "text-stone-600 cursor-not-allowed"
                   }`}
                   disabled={!unlockedSections.includes(section)}
                 >
-                  {getSectionIcon(section)}
-                  [{section}]
+                  {getSectionIcon(section)}[{section}]
                 </button>
               ))}
             </div>
@@ -197,21 +256,27 @@ function App() {
 
           {mobileMenuOpen && (
             <div className="md:hidden mt-4 pb-4 flex flex-col gap-3 font-mono text-sm">
-              {['about', 'projects', 'skills', 'experience', 'hire', 'contact'].map((section) => (
+              {[
+                "about",
+                "projects",
+                "skills",
+                "experience",
+                "hire",
+                "contact",
+              ].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
                   className={`capitalize text-left transition-colors flex items-center gap-2 ${
                     activeSection === section
-                      ? 'text-emerald-400'
+                      ? "text-emerald-400"
                       : unlockedSections.includes(section)
-                      ? 'text-stone-400'
-                      : 'text-stone-600 cursor-not-allowed'
+                      ? "text-stone-400"
+                      : "text-stone-600 cursor-not-allowed"
                   }`}
                   disabled={!unlockedSections.includes(section)}
                 >
-                  {getSectionIcon(section)}
-                  [{section}]
+                  {getSectionIcon(section)}[{section}]
                 </button>
               ))}
             </div>
@@ -219,7 +284,10 @@ function App() {
         </div>
       </nav>
 
-      <section id="home" className="min-h-screen flex items-center justify-center px-6 pt-20 relative">
+      <section
+        id="home"
+        className="min-h-screen flex items-center justify-center px-6 pt-20 relative"
+      >
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="mb-12">
             <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-8 font-mono text-sm shadow-2xl">
@@ -233,19 +301,23 @@ function App() {
               </div>
               <div className="text-emerald-400 whitespace-pre-wrap">
                 {terminalText}
-                {showCursor && <span className="inline-block w-2 h-4 bg-emerald-400 ml-1 animate-pulse"></span>}
+                {showCursor && (
+                  <span className="inline-block w-2 h-4 bg-emerald-400 ml-1 animate-pulse"></span>
+                )}
               </div>
               {terminalText.length >= fullText.length && (
                 <div className="mt-6 flex flex-wrap gap-3 animate-fade-in">
-                  {['Projects', 'Skills', 'Experience', 'Hire', 'Contact'].map((item) => (
-                    <button
-                      key={item}
-                      onClick={() => scrollToSection(item.toLowerCase())}
-                      className="text-stone-400 hover:text-emerald-400 transition-colors border border-stone-700 hover:border-emerald-400/50 px-4 py-2 rounded"
-                    >
-                      [{item}]
-                    </button>
-                  ))}
+                  {["Projects", "Skills", "Experience", "Hire", "Contact"].map(
+                    (item) => (
+                      <button
+                        key={item}
+                        onClick={() => scrollToSection(item.toLowerCase())}
+                        className="text-stone-400 hover:text-emerald-400 transition-colors border border-stone-700 hover:border-emerald-400/50 px-4 py-2 rounded"
+                      >
+                        [{item}]
+                      </button>
+                    )
+                  )}
                 </div>
               )}
             </div>
@@ -254,26 +326,36 @@ function App() {
           <div className="text-center mb-8">
             <div className="relative inline-block mb-6">
               <div className="w-24 h-24 rounded-full border-2 border-stone-700 bg-stone-900 mx-auto flex items-center justify-center text-stone-400 text-3xl font-bold">
-                YN
+                FA
               </div>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-4 text-stone-100">
-              Full-Stack Developer & AI Enthusiast
+              Backend Developer / AI & ML Engineer
             </h1>
 
             <p className="text-lg md:text-xl text-stone-400 mb-8 max-w-2xl mx-auto">
-              Crafting intelligent, scalable applications that solve real-world problems
+              Crafting intelligent, scalable applications that solve real-world
+              problems
             </p>
 
             <div className="flex gap-4 justify-center mb-8">
-              <a href="#" className="text-stone-400 hover:text-emerald-400 transition-colors">
+              <a
+                href="#"
+                className="text-stone-400 hover:text-emerald-400 transition-colors"
+              >
                 <Github size={24} />
               </a>
-              <a href="#" className="text-stone-400 hover:text-emerald-400 transition-colors">
+              <a
+                href="#"
+                className="text-stone-400 hover:text-emerald-400 transition-colors"
+              >
                 <Linkedin size={24} />
               </a>
-              <a href="#contact" className="text-stone-400 hover:text-emerald-400 transition-colors">
+              <a
+                href="#contact"
+                className="text-stone-400 hover:text-emerald-400 transition-colors"
+              >
                 <Mail size={24} />
               </a>
             </div>
@@ -285,7 +367,7 @@ function App() {
           </div>
 
           <button
-            onClick={() => scrollToSection('about')}
+            onClick={() => scrollToSection("about")}
             className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-stone-500 hover:text-emerald-400 transition-colors"
           >
             <ChevronDown size={32} />
@@ -293,7 +375,10 @@ function App() {
         </div>
       </section>
 
-      <section id="about" className="min-h-screen flex items-center justify-center px-6 py-20 relative">
+      <section
+        id="about"
+        className="min-h-screen flex items-center justify-center px-6 py-20 relative"
+      >
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="flex items-center gap-3 mb-8 font-mono text-sm">
             <Unlock size={20} className="text-emerald-400" />
@@ -305,15 +390,31 @@ function App() {
           <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-8 md:p-12 shadow-xl">
             <div className="space-y-6 text-stone-300 leading-relaxed">
               <p>
-                I'm a passionate full-stack developer with a deep fascination for artificial intelligence and its potential to transform how we interact with technology. My journey into tech began with a simple curiosity about how things work, which has evolved into a career building sophisticated applications that make a difference.
+                I'm a passionate Backend developer with full-stack capabilities
+                with a deep fascination for artificial intelligence and its
+                potential to transform how we interact with technology. My
+                journey into tech began with a simple curiosity about how things
+                work, which has evolved into a career building applications that
+                make a difference.
               </p>
 
               <p>
-                What drives me is the intersection of elegant code and practical problem-solving. I believe the best software isn't just functional—it's intuitive, performant, and delightful to use. Whether I'm architecting backend systems, crafting responsive frontends, or integrating AI capabilities, I approach each project with attention to detail and a commitment to best practices.
+                What drives me is the intersection of elegant code and practical
+                problem-solving. I believe the best software isn't just
+                functional—it's intuitive, performant, and delightful to use.
+                Whether I'm architecting backend systems, crafting responsive
+                frontends, or integrating AI capabilities, I approach each
+                project with attention to detail and a commitment to best
+                practices.
               </p>
 
               <p>
-                Beyond coding, I'm committed to continuous learning. The tech landscape evolves rapidly, and I embrace that challenge by exploring new frameworks, contributing to open source, and sharing knowledge with the developer community. My goal is to build systems that scale, code that lasts, and solutions that matter.
+                Beyond coding, I'm committed to continuous learning. The tech
+                landscape evolves rapidly, and I embrace that challenge by
+                exploring new frameworks, contributing to open source, and
+                sharing knowledge with the developer community. My goal is to
+                build systems that scale, code that lasts, and solutions that
+                matter.
               </p>
 
               <div className="border-t border-stone-800 pt-6 mt-6">
@@ -321,7 +422,10 @@ function App() {
                   &gt; current_objectives
                 </h3>
                 <p>
-                  I'm seeking opportunities to work with innovative teams on challenging problems, particularly in areas involving AI/ML integration, complex system architecture, and products that have meaningful impact on users' lives.
+                  I'm seeking opportunities to work with innovative teams on
+                  challenging problems, particularly in areas involving AI/ML
+                  integration, complex system architecture, and products that
+                  have meaningful impact on users' lives.
                 </p>
               </div>
             </div>
@@ -344,30 +448,53 @@ function App() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="group bg-stone-900/50 backdrop-blur-sm border border-stone-800 hover:border-emerald-400/50 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-emerald-400/5">
               <div className="h-40 bg-gradient-to-br from-stone-800 to-stone-900 flex items-center justify-center border-b border-stone-800">
-                <Brain size={48} className="text-stone-600 group-hover:text-emerald-400 transition-colors" />
+                <Brain
+                  size={48}
+                  className="text-stone-600 group-hover:text-emerald-400 transition-colors"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-stone-100 font-mono">
-                  AI-Powered Content Analyzer
+                  AI-Powered Deepfake Detector
                 </h3>
                 <p className="text-stone-400 text-sm mb-4 leading-relaxed">
-                  Full-stack application leveraging NLP models to analyze and categorize large volumes of text data with 94% accuracy. Processes 10,000+ documents daily.
+                  Full-stack application leveraging NLP models to analyze and
+                  categorize large volumes of text data with 94% accuracy.
+                  Processes 10,000+ documents daily.
                 </p>
                 <div className="mb-4">
-                  <h4 className="font-mono text-xs text-stone-500 mb-2">TECH_STACK:</h4>
+                  <h4 className="font-mono text-xs text-stone-500 mb-2">
+                    TECH_STACK:
+                  </h4>
                   <div className="flex flex-wrap gap-2">
-                    {['React', 'Node.js', 'Python', 'TensorFlow', 'PostgreSQL', 'Redis'].map(tech => (
-                      <span key={tech} className="bg-stone-800 text-stone-400 px-2 py-1 rounded text-xs font-mono border border-stone-700">
+                    {[
+                      "React",
+                      "Node.js",
+                      "Python",
+                      "TensorFlow",
+                      "PostgreSQL",
+                      "Redis",
+                    ].map((tech) => (
+                      <span
+                        key={tech}
+                        className="bg-stone-800 text-stone-400 px-2 py-1 rounded text-xs font-mono border border-stone-700"
+                      >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
                 <div className="flex gap-4 text-sm">
-                  <a href="#" className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors">
+                  <a
+                    href="#"
+                    className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors"
+                  >
                     <ExternalLink size={14} /> demo
                   </a>
-                  <a href="#" className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors">
+                  <a
+                    href="#"
+                    className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors"
+                  >
                     <Github size={14} /> source
                   </a>
                 </div>
@@ -376,30 +503,53 @@ function App() {
 
             <div className="group bg-stone-900/50 backdrop-blur-sm border border-stone-800 hover:border-emerald-400/50 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-emerald-400/5">
               <div className="h-40 bg-gradient-to-br from-stone-800 to-stone-900 flex items-center justify-center border-b border-stone-800">
-                <Server size={48} className="text-stone-600 group-hover:text-emerald-400 transition-colors" />
+                <Server
+                  size={48}
+                  className="text-stone-600 group-hover:text-emerald-400 transition-colors"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-stone-100 font-mono">
                   E-Commerce Platform
                 </h3>
                 <p className="text-stone-400 text-sm mb-4 leading-relaxed">
-                  Enterprise-grade marketplace with real-time inventory management, payment processing, and analytics. Handles 50,000+ monthly transactions.
+                  Enterprise-grade marketplace with real-time inventory
+                  management, payment processing, and analytics. Handles 50,000+
+                  monthly transactions.
                 </p>
                 <div className="mb-4">
-                  <h4 className="font-mono text-xs text-stone-500 mb-2">TECH_STACK:</h4>
+                  <h4 className="font-mono text-xs text-stone-500 mb-2">
+                    TECH_STACK:
+                  </h4>
                   <div className="flex flex-wrap gap-2">
-                    {['Next.js', 'TypeScript', 'Express', 'MongoDB', 'Stripe', 'AWS'].map(tech => (
-                      <span key={tech} className="bg-stone-800 text-stone-400 px-2 py-1 rounded text-xs font-mono border border-stone-700">
+                    {[
+                      "Next.js",
+                      "TypeScript",
+                      "Express",
+                      "MongoDB",
+                      "Stripe",
+                      "AWS",
+                    ].map((tech) => (
+                      <span
+                        key={tech}
+                        className="bg-stone-800 text-stone-400 px-2 py-1 rounded text-xs font-mono border border-stone-700"
+                      >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
                 <div className="flex gap-4 text-sm">
-                  <a href="#" className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors">
+                  <a
+                    href="#"
+                    className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors"
+                  >
                     <ExternalLink size={14} /> demo
                   </a>
-                  <a href="#" className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors">
+                  <a
+                    href="#"
+                    className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors"
+                  >
                     <Github size={14} /> source
                   </a>
                 </div>
@@ -408,30 +558,53 @@ function App() {
 
             <div className="group bg-stone-900/50 backdrop-blur-sm border border-stone-800 hover:border-emerald-400/50 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-emerald-400/5">
               <div className="h-40 bg-gradient-to-br from-stone-800 to-stone-900 flex items-center justify-center border-b border-stone-800">
-                <Database size={48} className="text-stone-600 group-hover:text-emerald-400 transition-colors" />
+                <Database
+                  size={48}
+                  className="text-stone-600 group-hover:text-emerald-400 transition-colors"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-stone-100 font-mono">
                   Real-Time Analytics Dashboard
                 </h3>
                 <p className="text-stone-400 text-sm mb-4 leading-relaxed">
-                  High-performance data visualization platform processing millions of events per day with sub-second query response times.
+                  High-performance data visualization platform processing
+                  millions of events per day with sub-second query response
+                  times.
                 </p>
                 <div className="mb-4">
-                  <h4 className="font-mono text-xs text-stone-500 mb-2">TECH_STACK:</h4>
+                  <h4 className="font-mono text-xs text-stone-500 mb-2">
+                    TECH_STACK:
+                  </h4>
                   <div className="flex flex-wrap gap-2">
-                    {['Vue.js', 'FastAPI', 'ClickHouse', 'Kafka', 'Docker', 'K8s'].map(tech => (
-                      <span key={tech} className="bg-stone-800 text-stone-400 px-2 py-1 rounded text-xs font-mono border border-stone-700">
+                    {[
+                      "Vue.js",
+                      "FastAPI",
+                      "ClickHouse",
+                      "Kafka",
+                      "Docker",
+                      "K8s",
+                    ].map((tech) => (
+                      <span
+                        key={tech}
+                        className="bg-stone-800 text-stone-400 px-2 py-1 rounded text-xs font-mono border border-stone-700"
+                      >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
                 <div className="flex gap-4 text-sm">
-                  <a href="#" className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors">
+                  <a
+                    href="#"
+                    className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors"
+                  >
                     <ExternalLink size={14} /> demo
                   </a>
-                  <a href="#" className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors">
+                  <a
+                    href="#"
+                    className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors"
+                  >
                     <Github size={14} /> source
                   </a>
                 </div>
@@ -440,30 +613,52 @@ function App() {
 
             <div className="group bg-stone-900/50 backdrop-blur-sm border border-stone-800 hover:border-emerald-400/50 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-emerald-400/5">
               <div className="h-40 bg-gradient-to-br from-stone-800 to-stone-900 flex items-center justify-center border-b border-stone-800">
-                <Code2 size={48} className="text-stone-600 group-hover:text-emerald-400 transition-colors" />
+                <Code2
+                  size={48}
+                  className="text-stone-600 group-hover:text-emerald-400 transition-colors"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-stone-100 font-mono">
                   Developer Collaboration Tool
                 </h3>
                 <p className="text-stone-400 text-sm mb-4 leading-relaxed">
-                  Real-time collaborative code editor with integrated chat, version control, and AI-powered code suggestions.
+                  Real-time collaborative code editor with integrated chat,
+                  version control, and AI-powered code suggestions.
                 </p>
                 <div className="mb-4">
-                  <h4 className="font-mono text-xs text-stone-500 mb-2">TECH_STACK:</h4>
+                  <h4 className="font-mono text-xs text-stone-500 mb-2">
+                    TECH_STACK:
+                  </h4>
                   <div className="flex flex-wrap gap-2">
-                    {['React', 'Socket.io', 'Monaco', 'Node.js', 'Redis', 'OpenAI'].map(tech => (
-                      <span key={tech} className="bg-stone-800 text-stone-400 px-2 py-1 rounded text-xs font-mono border border-stone-700">
+                    {[
+                      "React",
+                      "Socket.io",
+                      "Monaco",
+                      "Node.js",
+                      "Redis",
+                      "OpenAI",
+                    ].map((tech) => (
+                      <span
+                        key={tech}
+                        className="bg-stone-800 text-stone-400 px-2 py-1 rounded text-xs font-mono border border-stone-700"
+                      >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
                 <div className="flex gap-4 text-sm">
-                  <a href="#" className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors">
+                  <a
+                    href="#"
+                    className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors"
+                  >
                     <ExternalLink size={14} /> demo
                   </a>
-                  <a href="#" className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors">
+                  <a
+                    href="#"
+                    className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors"
+                  >
                     <Github size={14} /> source
                   </a>
                 </div>
@@ -493,15 +688,21 @@ function App() {
               </h3>
               <div className="space-y-3 md:space-y-4">
                 {[
-                  { name: 'JavaScript/TypeScript', level: 90, xp: '2500 XP' },
-                  { name: 'Python', level: 90, xp: '2400 XP' },
-                  { name: 'Java', level: 70, xp: '1800 XP' },
-                  { name: 'Go', level: 40, xp: '800 XP' }
-                ].map(skill => (
+                  { name: "Html", level: 90, xp: "2500 XP" },
+                  { name: "Python", level: 90, xp: "2400 XP" },
+                  { name: "CSS", level: 80, xp: "2200 XP" },
+                  { name: "JavaScript/TypeScript", level: 70, xp: "1800 XP" },
+                  { name: "Java", level: 70, xp: "1800 XP" },
+                  { name: "Go", level: 40, xp: "800 XP" },
+                ].map((skill) => (
                   <div key={skill.name}>
                     <div className="flex justify-between mb-1.5 md:mb-2 text-xs md:text-sm">
-                      <span className="text-stone-300 font-mono truncate">{skill.name}</span>
-                      <span className="text-stone-500 font-mono text-xs ml-2">{skill.xp}</span>
+                      <span className="text-stone-300 font-mono truncate">
+                        {skill.name}
+                      </span>
+                      <span className="text-stone-500 font-mono text-xs ml-2">
+                        {skill.xp}
+                      </span>
                     </div>
                     <div className="h-1.5 md:h-2 bg-stone-800 rounded-full overflow-hidden">
                       <div
@@ -523,8 +724,17 @@ function App() {
                 BACKEND
               </h3>
               <ul className="space-y-2 text-stone-400 text-xs md:text-sm font-mono">
-                {['Node.js & Express', 'FastAPI & Django', 'PostgreSQL & MongoDB', 'Redis & ElasticSearch', 'GraphQL & REST APIs', 'Microservices'].map(skill => (
-                  <li key={skill} className="hover:text-emerald-400 transition-colors flex items-center gap-2">
+                {[
+                  "FastAPI & Django",
+                  "PostgreSQL & MySQL",
+                  "Redis",
+                  "REST APIs",
+                  "Microservices",
+                ].map((skill) => (
+                  <li
+                    key={skill}
+                    className="hover:text-emerald-400 transition-colors flex items-center gap-2"
+                  >
                     <Star size={10} className="text-stone-700 md:w-3 md:h-3" />
                     {skill}
                   </li>
@@ -538,8 +748,18 @@ function App() {
                 AI & ML
               </h3>
               <ul className="space-y-2 text-stone-400 text-xs md:text-sm font-mono">
-                {['TensorFlow & PyTorch', 'NLP & Computer Vision', 'OpenAI & Hugging Face', 'ML Model Deployment', 'Data Processing', 'Vector Databases'].map(skill => (
-                  <li key={skill} className="hover:text-emerald-400 transition-colors flex items-center gap-2">
+                {[
+                  "TensorFlow & PyTorch",
+                  "NLP & Computer Vision",
+                  "OpenAI & Hugging Face",
+                  "ML Model Deployment",
+                  "Data Processing",
+                  "Vector Databases",
+                ].map((skill) => (
+                  <li
+                    key={skill}
+                    className="hover:text-emerald-400 transition-colors flex items-center gap-2"
+                  >
                     <Star size={10} className="text-stone-700 md:w-3 md:h-3" />
                     {skill}
                   </li>
@@ -552,8 +772,17 @@ function App() {
                 FRONTEND
               </h3>
               <ul className="space-y-2 text-stone-400 text-xs md:text-sm font-mono">
-                {['React & Next.js', 'Vue.js & Nuxt', 'Tailwind CSS', 'State Management', 'Responsive Design', 'Accessibility'].map(skill => (
-                  <li key={skill} className="hover:text-emerald-400 transition-colors flex items-center gap-2">
+                {[
+                  "React",
+                  "Tailwind CSS",
+                  "State Management",
+                  "Responsive Design",
+                  "Accessibility",
+                ].map((skill) => (
+                  <li
+                    key={skill}
+                    className="hover:text-emerald-400 transition-colors flex items-center gap-2"
+                  >
                     <Star size={10} className="text-stone-700 md:w-3 md:h-3" />
                     {skill}
                   </li>
@@ -566,8 +795,17 @@ function App() {
                 DEVOPS
               </h3>
               <ul className="space-y-2 text-stone-400 text-xs md:text-sm font-mono">
-                {['Docker & Kubernetes', 'AWS & GCP', 'CI/CD Pipelines', 'Infrastructure as Code', 'Monitoring', 'Linux Admin'].map(skill => (
-                  <li key={skill} className="hover:text-emerald-400 transition-colors flex items-center gap-2">
+                {[
+                  "Docker",
+                  "CI/CD Pipelines",
+                  "Infrastructure as Code",
+                  "Monitoring",
+                  "Linux Admin",
+                ].map((skill) => (
+                  <li
+                    key={skill}
+                    className="hover:text-emerald-400 transition-colors flex items-center gap-2"
+                  >
                     <Star size={10} className="text-stone-700 md:w-3 md:h-3" />
                     {skill}
                   </li>
@@ -580,8 +818,19 @@ function App() {
                 PRACTICES
               </h3>
               <ul className="space-y-2 text-stone-400 text-xs md:text-sm font-mono">
-                {['Git & GitHub', 'Agile/Scrum', 'TDD', 'Code Review', 'System Design', 'Performance Opt'].map(skill => (
-                  <li key={skill} className="hover:text-emerald-400 transition-colors flex items-center gap-2">
+                {[
+                  "Git & GitHub",
+                  "Agile/Scrum",
+                  "Clean Architecture",
+                  "TDD",
+                  "Code Review",
+                  "System Design",
+                  "Performance Optimization",
+                ].map((skill) => (
+                  <li
+                    key={skill}
+                    className="hover:text-emerald-400 transition-colors flex items-center gap-2"
+                  >
                     <Star size={10} className="text-stone-700 md:w-3 md:h-3" />
                     {skill}
                   </li>
@@ -609,24 +858,38 @@ function App() {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
                 <div>
                   <h3 className="text-xl font-bold text-stone-100 font-mono">
-                    Senior Full-Stack Developer
+                    Backend Developer
                   </h3>
-                  <p className="text-stone-400 text-sm font-mono">Tech Innovations Inc.</p>
+                  <p className="text-stone-400 text-sm font-mono">Ndaab</p>
                 </div>
-                <span className="text-stone-500 text-sm font-mono mt-2 md:mt-0">2022 - Present</span>
+                <span className="text-stone-500 text-sm font-mono mt-2 md:mt-0">
+                  june 2025 - Present
+                </span>
               </div>
               <ul className="space-y-2 text-stone-400 text-sm">
                 <li className="flex items-start gap-2">
-                  <Zap size={14} className="text-emerald-400 mt-1 flex-shrink-0" />
-                  Led development of AI-powered analytics platform serving 100K+ users
+                  <Zap
+                    size={14}
+                    className="text-emerald-400 mt-1 flex-shrink-0"
+                  />
+                  Developing scalable backend systems using FastAPI following
+                  Clean Architecture principles
                 </li>
                 <li className="flex items-start gap-2">
-                  <Zap size={14} className="text-emerald-400 mt-1 flex-shrink-0" />
-                  Architected microservices infrastructure reducing deployment time by 60%
+                  <Zap
+                    size={14}
+                    className="text-emerald-400 mt-1 flex-shrink-0"
+                  />
+                  Designing and implementing RESTful APIs serving frontend
+                  applications
                 </li>
                 <li className="flex items-start gap-2">
-                  <Zap size={14} className="text-emerald-400 mt-1 flex-shrink-0" />
-                  Mentored team of 5 junior developers in best practices
+                  <Zap
+                    size={14}
+                    className="text-emerald-400 mt-1 flex-shrink-0"
+                  />
+                  Collaborating with frontend developers on full-stack feature
+                  implementation
                 </li>
               </ul>
             </div>
@@ -635,42 +898,29 @@ function App() {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
                 <div>
                   <h3 className="text-xl font-bold text-stone-100 font-mono">
-                    Full-Stack Developer
+                    Backend Developer
                   </h3>
-                  <p className="text-stone-400 text-sm font-mono">Digital Solutions Co.</p>
+                  <p className="text-stone-400 text-sm font-mono">Skye8</p>
                 </div>
-                <span className="text-stone-500 text-sm font-mono mt-2 md:mt-0">2020 - 2022</span>
+                <span className="text-stone-500 text-sm font-mono mt-2 md:mt-0">
+                  Feb 2023 - sept 2023
+                </span>
               </div>
               <ul className="space-y-2 text-stone-400 text-sm">
                 <li className="flex items-start gap-2">
-                  <Zap size={14} className="text-stone-600 mt-1 flex-shrink-0" />
-                  Built RESTful APIs handling 1M+ requests daily with 99.9% uptime
+                  <Zap
+                    size={14}
+                    className="text-stone-600 mt-1 flex-shrink-0"
+                  />
+                  Developed and maintained Django-based web applications
                 </li>
                 <li className="flex items-start gap-2">
-                  <Zap size={14} className="text-stone-600 mt-1 flex-shrink-0" />
-                  Optimized database queries reducing response time by 75%
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-stone-900/50 backdrop-blur-sm border-l-4 border-stone-700 rounded-r-lg p-6 hover:bg-stone-900/70 transition-colors">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                <div>
-                  <h3 className="text-xl font-bold text-stone-100 font-mono">
-                    Junior Developer
-                  </h3>
-                  <p className="text-stone-400 text-sm font-mono">StartUp Ventures</p>
-                </div>
-                <span className="text-stone-500 text-sm font-mono mt-2 md:mt-0">2019 - 2020</span>
-              </div>
-              <ul className="space-y-2 text-stone-400 text-sm">
-                <li className="flex items-start gap-2">
-                  <Zap size={14} className="text-stone-600 mt-1 flex-shrink-0" />
-                  Contributed to full-stack development of e-commerce platform
-                </li>
-                <li className="flex items-start gap-2">
-                  <Zap size={14} className="text-stone-600 mt-1 flex-shrink-0" />
-                  Implemented automated testing increasing coverage to 85%
+                  <Zap
+                    size={14}
+                    className="text-stone-600 mt-1 flex-shrink-0"
+                  />
+                  Built REST APIs for frontend consumption and third-party
+                  integrations
                 </li>
               </ul>
             </div>
@@ -682,7 +932,9 @@ function App() {
             </h3>
             <div className="grid md:grid-cols-2 gap-6 text-sm">
               <div>
-                <h4 className="font-mono text-stone-400 mb-3">CERTIFICATIONS:</h4>
+                <h4 className="font-mono text-stone-400 mb-3">
+                  CERTIFICATIONS:
+                </h4>
                 <ul className="space-y-2 text-stone-500 font-mono text-xs">
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
@@ -703,15 +955,15 @@ function App() {
                 <ul className="space-y-2 text-stone-500 font-mono text-xs">
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
-                    React ecosystem contributor
+                    Django Cameroon contributor
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
-                    CLI tool maintainer (2K+ stars)
+                    DjangoCrafts contributor
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
-                    500+ GitHub contributions
+                    100+ GitHub contributions
                   </li>
                 </ul>
               </div>
@@ -720,7 +972,10 @@ function App() {
         </div>
       </section>
 
-      <section id="hire" className="min-h-screen flex items-center justify-center px-6 py-20 relative">
+      <section
+        id="hire"
+        className="min-h-screen flex items-center justify-center px-6 py-20 relative"
+      >
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="flex items-center gap-2 md:gap-3 mb-6 md:mb-8 font-mono text-xs md:text-sm">
             <Unlock size={18} className="text-emerald-400 md:w-5 md:h-5" />
@@ -739,49 +994,82 @@ function App() {
 
             <div className="space-y-4 md:space-y-6 text-stone-300 text-sm md:text-base leading-relaxed mb-8">
               <p>
-                I'm currently <span className="text-emerald-400 font-semibold">available for hire</span> and open to exciting opportunities in full-stack development, AI/ML integration, and technical leadership roles.
+                I'm currently{" "}
+                <span className="text-emerald-400 font-semibold">
+                  available for hire
+                </span>{" "}
+                and open to opportunities in Backend development, AI/ML
+                integration, and technical leadership roles.
               </p>
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-stone-800/30 border border-stone-700 rounded-lg p-4">
-                  <h4 className="text-emerald-400 font-mono font-semibold mb-3 text-sm">WHAT I OFFER:</h4>
+                  <h4 className="text-emerald-400 font-mono font-semibold mb-3 text-sm">
+                    WHAT I OFFER:
+                  </h4>
                   <ul className="space-y-2 text-stone-400 text-xs md:text-sm">
                     <li className="flex items-start gap-2">
-                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <Star
+                        size={12}
+                        className="text-emerald-400 mt-0.5 flex-shrink-0"
+                      />
                       Full-stack development expertise
                     </li>
                     <li className="flex items-start gap-2">
-                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <Star
+                        size={12}
+                        className="text-emerald-400 mt-0.5 flex-shrink-0"
+                      />
                       AI/ML integration & implementation
                     </li>
                     <li className="flex items-start gap-2">
-                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <Star
+                        size={12}
+                        className="text-emerald-400 mt-0.5 flex-shrink-0"
+                      />
                       System architecture & scalability
                     </li>
                     <li className="flex items-start gap-2">
-                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <Star
+                        size={12}
+                        className="text-emerald-400 mt-0.5 flex-shrink-0"
+                      />
                       Team leadership & mentorship
                     </li>
                   </ul>
                 </div>
 
                 <div className="bg-stone-800/30 border border-stone-700 rounded-lg p-4">
-                  <h4 className="text-emerald-400 font-mono font-semibold mb-3 text-sm">WORK PREFERENCES:</h4>
+                  <h4 className="text-emerald-400 font-mono font-semibold mb-3 text-sm">
+                    WORK PREFERENCES:
+                  </h4>
                   <ul className="space-y-2 text-stone-400 text-xs md:text-sm">
                     <li className="flex items-start gap-2">
-                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <Star
+                        size={12}
+                        className="text-emerald-400 mt-0.5 flex-shrink-0"
+                      />
                       Remote or hybrid positions
                     </li>
                     <li className="flex items-start gap-2">
-                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <Star
+                        size={12}
+                        className="text-emerald-400 mt-0.5 flex-shrink-0"
+                      />
                       Full-time opportunities
                     </li>
                     <li className="flex items-start gap-2">
-                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <Star
+                        size={12}
+                        className="text-emerald-400 mt-0.5 flex-shrink-0"
+                      />
                       Contract/consulting projects
                     </li>
                     <li className="flex items-start gap-2">
-                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <Star
+                        size={12}
+                        className="text-emerald-400 mt-0.5 flex-shrink-0"
+                      />
                       Flexible start dates
                     </li>
                   </ul>
@@ -797,7 +1085,7 @@ function App() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="/resume.pdf"
-                  download="Your_Name_Resume.pdf"
+                  download="Fritz_Akam.pdf"
                   className="group flex items-center justify-center gap-3 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-400/50 hover:border-emerald-400 text-emerald-400 px-6 md:px-8 py-3 md:py-4 rounded font-mono text-sm md:text-base transition-all duration-300 hover:shadow-lg hover:shadow-emerald-400/20"
                 >
                   <Download size={20} className="group-hover:animate-bounce" />
@@ -805,7 +1093,7 @@ function App() {
                 </a>
 
                 <a
-                  href="mailto:your.email@example.com?subject=Job Opportunity"
+                  href="mailto:fritzimpah@gmail.com?subject=Job Opportunity"
                   className="flex items-center justify-center gap-3 bg-stone-800 hover:bg-stone-700 border border-stone-700 hover:border-stone-600 text-stone-300 hover:text-stone-100 px-6 md:px-8 py-3 md:py-4 rounded font-mono text-sm md:text-base transition-all duration-300"
                 >
                   <Mail size={20} />
@@ -814,14 +1102,17 @@ function App() {
               </div>
 
               <p className="text-center text-stone-500 text-xs md:text-sm mt-6 font-mono">
-                // Available for immediate start or flexible scheduling
+                // Available for flexible scheduling
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="contact" className="min-h-screen flex items-center justify-center px-6 py-20 relative">
+      <section
+        id="contact"
+        className="min-h-screen flex items-center justify-center px-6 py-20 relative"
+      >
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="flex items-center justify-center gap-3 mb-6 font-mono text-sm">
             <Unlock size={20} className="text-emerald-400" />
@@ -830,26 +1121,50 @@ function App() {
             </h2>
           </div>
           <p className="text-lg text-stone-400 mb-12 max-w-2xl mx-auto">
-            I'm always interested in hearing about new projects, opportunities, and collaborations. Whether you have a question or just want to say hi, feel free to reach out.
+            I'm always interested in hearing about opportunities and
+            collaborations. Whether you have a question or just want to say hi,
+            feel free to reach out.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <a href="mailto:your.email@example.com" className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 hover:border-emerald-400/50 p-6 rounded-lg transition-all duration-300 group">
-              <Mail size={28} className="mx-auto mb-3 text-stone-600 group-hover:text-emerald-400 transition-colors" />
+            <a
+              href="mailto:fritzimpah@gmail.com"
+              className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 hover:border-emerald-400/50 p-6 rounded-lg transition-all duration-300 group"
+            >
+              <Mail
+                size={28}
+                className="mx-auto mb-3 text-stone-600 group-hover:text-emerald-400 transition-colors"
+              />
               <h3 className="font-mono text-sm text-stone-400 mb-2">EMAIL</h3>
-              <p className="text-stone-500 text-xs font-mono">your.email@example.com</p>
+              <p className="text-stone-500 text-xs font-mono">
+                fritzimpah@gmail.com
+              </p>
             </a>
 
-            <a href="https://github.com/yourusername" className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 hover:border-emerald-400/50 p-6 rounded-lg transition-all duration-300 group">
-              <Github size={28} className="mx-auto mb-3 text-stone-600 group-hover:text-emerald-400 transition-colors" />
+            <a
+              href="https://github.com/Fritz-nvm"
+              className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 hover:border-emerald-400/50 p-6 rounded-lg transition-all duration-300 group"
+            >
+              <Github
+                size={28}
+                className="mx-auto mb-3 text-stone-600 group-hover:text-emerald-400 transition-colors"
+              />
               <h3 className="font-mono text-sm text-stone-400 mb-2">GITHUB</h3>
-              <p className="text-stone-500 text-xs font-mono">@yourusername</p>
+              <p className="text-stone-500 text-xs font-mono">@Fritz-nvm</p>
             </a>
 
-            <a href="https://linkedin.com/in/yourusername" className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 hover:border-emerald-400/50 p-6 rounded-lg transition-all duration-300 group">
-              <Linkedin size={28} className="mx-auto mb-3 text-stone-600 group-hover:text-emerald-400 transition-colors" />
-              <h3 className="font-mono text-sm text-stone-400 mb-2">LINKEDIN</h3>
-              <p className="text-stone-500 text-xs font-mono">/in/yourusername</p>
+            <a
+              href="https://linkedin.com/in/fritz-akam"
+              className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 hover:border-emerald-400/50 p-6 rounded-lg transition-all duration-300 group"
+            >
+              <Linkedin
+                size={28}
+                className="mx-auto mb-3 text-stone-600 group-hover:text-emerald-400 transition-colors"
+              />
+              <h3 className="font-mono text-sm text-stone-400 mb-2">
+                LINKEDIN
+              </h3>
+              <p className="text-stone-500 text-xs font-mono">/in/fritz-akam</p>
             </a>
           </div>
 
@@ -865,7 +1180,7 @@ function App() {
       <footer className="border-t border-stone-800 py-8 px-6 relative">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-stone-500 text-sm font-mono mb-2">
-            &gt; Designed & Built by Your Name
+            &gt; Designed & Built by Fritz Akam
           </p>
           <p className="text-stone-600 text-xs font-mono">
             © 2025 All rights reserved.
