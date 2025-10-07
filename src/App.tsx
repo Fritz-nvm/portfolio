@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, Code2, Database, Brain, Server, ChevronDown, Menu, X, Terminal, Lock, Unlock, Trophy, Star, Zap } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, Code2, Database, Brain, Server, ChevronDown, Menu, X, Terminal, Lock, Unlock, Trophy, Star, Zap, Download, Briefcase } from 'lucide-react';
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,7 +38,7 @@ function App() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      const sections = ['home', 'about', 'projects', 'skills', 'experience', 'contact'];
+      const sections = ['home', 'about', 'projects', 'skills', 'experience', 'hire', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -70,6 +70,7 @@ function App() {
         'projects': 'Explorer - Discovered the Projects Archive',
         'skills': 'Scholar - Unlocked the Skills Matrix',
         'experience': 'Historian - Accessed Experience Timeline',
+        'hire': 'Recruiter - Found the Hire Portal',
         'contact': 'Networker - Reached the Contact Portal'
       };
 
@@ -174,7 +175,7 @@ function App() {
             </button>
 
             <div className="hidden md:flex gap-6 font-mono text-sm">
-              {['about', 'projects', 'skills', 'experience', 'contact'].map((section) => (
+              {['about', 'projects', 'skills', 'experience', 'hire', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -196,7 +197,7 @@ function App() {
 
           {mobileMenuOpen && (
             <div className="md:hidden mt-4 pb-4 flex flex-col gap-3 font-mono text-sm">
-              {['about', 'projects', 'skills', 'experience', 'contact'].map((section) => (
+              {['about', 'projects', 'skills', 'experience', 'hire', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -236,7 +237,7 @@ function App() {
               </div>
               {terminalText.length >= fullText.length && (
                 <div className="mt-6 flex flex-wrap gap-3 animate-fade-in">
-                  {['Projects', 'Skills', 'Experience', 'Contact'].map((item) => (
+                  {['Projects', 'Skills', 'Experience', 'Hire', 'Contact'].map((item) => (
                     <button
                       key={item}
                       onClick={() => scrollToSection(item.toLowerCase())}
@@ -279,7 +280,7 @@ function App() {
 
             <div className="inline-flex items-center gap-2 text-stone-500 text-sm font-mono">
               <Trophy size={16} className="text-amber-400" />
-              <span>{achievements.length} / 4 Achievements Unlocked</span>
+              <span>{achievements.length} / 5 Achievements Unlocked</span>
             </div>
           </div>
 
@@ -714,6 +715,107 @@ function App() {
                   </li>
                 </ul>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="hire" className="min-h-screen flex items-center justify-center px-6 py-20 relative">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="flex items-center gap-2 md:gap-3 mb-6 md:mb-8 font-mono text-xs md:text-sm">
+            <Unlock size={18} className="text-emerald-400 md:w-5 md:h-5" />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-stone-100">
+              &gt; hire_me.sh
+            </h2>
+          </div>
+
+          <div className="bg-stone-900/50 backdrop-blur-sm border border-stone-800 rounded-lg p-6 md:p-8 lg:p-12 shadow-xl mb-8">
+            <div className="flex items-center gap-3 mb-6">
+              <Briefcase size={32} className="text-emerald-400" />
+              <h3 className="text-2xl md:text-3xl font-bold text-stone-100">
+                Ready to Work Together?
+              </h3>
+            </div>
+
+            <div className="space-y-4 md:space-y-6 text-stone-300 text-sm md:text-base leading-relaxed mb-8">
+              <p>
+                I'm currently <span className="text-emerald-400 font-semibold">available for hire</span> and open to exciting opportunities in full-stack development, AI/ML integration, and technical leadership roles.
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-stone-800/30 border border-stone-700 rounded-lg p-4">
+                  <h4 className="text-emerald-400 font-mono font-semibold mb-3 text-sm">WHAT I OFFER:</h4>
+                  <ul className="space-y-2 text-stone-400 text-xs md:text-sm">
+                    <li className="flex items-start gap-2">
+                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      Full-stack development expertise
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      AI/ML integration & implementation
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      System architecture & scalability
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      Team leadership & mentorship
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-stone-800/30 border border-stone-700 rounded-lg p-4">
+                  <h4 className="text-emerald-400 font-mono font-semibold mb-3 text-sm">WORK PREFERENCES:</h4>
+                  <ul className="space-y-2 text-stone-400 text-xs md:text-sm">
+                    <li className="flex items-start gap-2">
+                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      Remote or hybrid positions
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      Full-time opportunities
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      Contract/consulting projects
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Star size={12} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                      Flexible start dates
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t border-stone-800 pt-8">
+              <h4 className="text-lg md:text-xl font-semibold mb-6 text-center text-stone-100 font-mono">
+                &gt; download_resume
+              </h4>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="/resume.pdf"
+                  download="Your_Name_Resume.pdf"
+                  className="group flex items-center justify-center gap-3 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-400/50 hover:border-emerald-400 text-emerald-400 px-6 md:px-8 py-3 md:py-4 rounded font-mono text-sm md:text-base transition-all duration-300 hover:shadow-lg hover:shadow-emerald-400/20"
+                >
+                  <Download size={20} className="group-hover:animate-bounce" />
+                  [DOWNLOAD_CV.pdf]
+                </a>
+
+                <a
+                  href="mailto:your.email@example.com?subject=Job Opportunity"
+                  className="flex items-center justify-center gap-3 bg-stone-800 hover:bg-stone-700 border border-stone-700 hover:border-stone-600 text-stone-300 hover:text-stone-100 px-6 md:px-8 py-3 md:py-4 rounded font-mono text-sm md:text-base transition-all duration-300"
+                >
+                  <Mail size={20} />
+                  [DISCUSS_OPPORTUNITY]
+                </a>
+              </div>
+
+              <p className="text-center text-stone-500 text-xs md:text-sm mt-6 font-mono">
+                // Available for immediate start or flexible scheduling
+              </p>
             </div>
           </div>
         </div>
