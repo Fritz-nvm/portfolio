@@ -942,7 +942,7 @@ function App() {
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
-                    ML Specialization
+                    Django Developer
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
