@@ -458,9 +458,9 @@ function App() {
                   AI-Powered Deepfake Detector
                 </h3>
                 <p className="text-stone-400 text-sm mb-4 leading-relaxed">
-                  Full-stack application leveraging NLP models to analyze and
-                  categorize large volumes of text data with 94% accuracy.
-                  Processes 10,000+ documents daily.
+                  Full-stack application leveraging AI vision models to analyze
+                  and categorize large volumes of Image and video files with a
+                  94% accuracy.
                 </p>
                 <div className="mb-4">
                   <h4 className="font-mono text-xs text-stone-500 mb-2">
@@ -468,12 +468,12 @@ function App() {
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {[
-                      "React",
-                      "Node.js",
+                      "Django",
+                      "Bootstrap",
                       "Python",
                       "TensorFlow",
                       "PostgreSQL",
-                      "Redis",
+                      "celery",
                     ].map((tech) => (
                       <span
                         key={tech}
@@ -492,7 +492,7 @@ function App() {
                     <ExternalLink size={14} /> demo
                   </a>
                   <a
-                    href="#"
+                    href="https://github.com/Fritz-nvm/deepfake_detector"
                     className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors"
                   >
                     <Github size={14} /> source
@@ -510,12 +510,11 @@ function App() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-stone-100 font-mono">
-                  E-Commerce Platform
+                  Image Annotation
                 </h3>
                 <p className="text-stone-400 text-sm mb-4 leading-relaxed">
-                  Enterprise-grade marketplace with real-time inventory
-                  management, payment processing, and analytics. Handles 50,000+
-                  monthly transactions.
+                  A state of the art image annotation tool to label images for
+                  AI model training.
                 </p>
                 <div className="mb-4">
                   <h4 className="font-mono text-xs text-stone-500 mb-2">
@@ -523,12 +522,11 @@ function App() {
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {[
-                      "Next.js",
                       "TypeScript",
-                      "Express",
-                      "MongoDB",
-                      "Stripe",
-                      "AWS",
+                      "React",
+                      "Django",
+                      "Django Rest Framework",
+                      "PostgreSQL",
                     ].map((tech) => (
                       <span
                         key={tech}
@@ -547,7 +545,7 @@ function App() {
                     <ExternalLink size={14} /> demo
                   </a>
                   <a
-                    href="#"
+                    href="https://github.com/Fritz-nvm/image-annotation"
                     className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors"
                   >
                     <Github size={14} /> source
@@ -565,26 +563,18 @@ function App() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-stone-100 font-mono">
-                  Real-Time Analytics Dashboard
+                  Medicare
                 </h3>
                 <p className="text-stone-400 text-sm mb-4 leading-relaxed">
-                  High-performance data visualization platform processing
-                  millions of events per day with sub-second query response
-                  times.
+                  A plartform that connects patients with healthcare providers,
+                  with realtime chat and appointment scheduling.
                 </p>
                 <div className="mb-4">
                   <h4 className="font-mono text-xs text-stone-500 mb-2">
                     TECH_STACK:
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {[
-                      "Vue.js",
-                      "FastAPI",
-                      "ClickHouse",
-                      "Kafka",
-                      "Docker",
-                      "K8s",
-                    ].map((tech) => (
+                    {["Bootstrap", "Django", "PostgreSQL"].map((tech) => (
                       <span
                         key={tech}
                         className="bg-stone-800 text-stone-400 px-2 py-1 rounded text-xs font-mono border border-stone-700"
@@ -602,7 +592,7 @@ function App() {
                     <ExternalLink size={14} /> demo
                   </a>
                   <a
-                    href="#"
+                    href="https://github.com/Fritz-nvm/Medicare"
                     className="flex items-center gap-1 text-stone-400 hover:text-emerald-400 font-mono transition-colors"
                   >
                     <Github size={14} /> source
@@ -623,22 +613,15 @@ function App() {
                   Developer Collaboration Tool
                 </h3>
                 <p className="text-stone-400 text-sm mb-4 leading-relaxed">
-                  Real-time collaborative code editor with integrated chat,
-                  version control, and AI-powered code suggestions.
+                  Real-time collaborative project management with integrated
+                  chat, version control.
                 </p>
                 <div className="mb-4">
                   <h4 className="font-mono text-xs text-stone-500 mb-2">
                     TECH_STACK:
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {[
-                      "React",
-                      "Socket.io",
-                      "Monaco",
-                      "Node.js",
-                      "Redis",
-                      "OpenAI",
-                    ].map((tech) => (
+                    {["React", "FastAPI", "Docker", "Redis"].map((tech) => (
                       <span
                         key={tech}
                         className="bg-stone-800 text-stone-400 px-2 py-1 rounded text-xs font-mono border border-stone-700"
