@@ -1084,7 +1084,7 @@ function App() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="/resume.pdf"
+                  href="/IMPAH FRITZ AKAM.pdf"
                   download="Fritz_Akam.pdf"
                   className="group flex items-center justify-center gap-3 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-400/50 hover:border-emerald-400 text-emerald-400 px-6 md:px-8 py-3 md:py-4 rounded font-mono text-sm md:text-base transition-all duration-300 hover:shadow-lg hover:shadow-emerald-400/20"
                 >
